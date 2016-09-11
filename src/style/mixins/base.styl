@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/**
+ * @file 	Base Css
+ * @authors Kevin Chen (chj@8cuo.net)
+ * @date    2015-06-30 12:54:23
+ */
+ 
+
+reset-font()
+    font-weight: inherit
+    font-style: inherit
+    font-family: inherit
+    font-size: 100%
+    vertical-align: baseline
+
+
+reset-box-model()
+    margin: 0
+    padding: 0
+    border: 0
+
+reset-list()
+    list-style: none
+    li
+        padding: 0
+        margin: 0
+
+
+reset-table()
+    border-collapse: collapse
+    vertical-align: middle
+
+
+reset-table-cell()
+    text-align: left
+    font-weight: normal
+    vertical-align: middle
+    padding: 0
+
+
+normalize-form()
+    button,
+    input,
+    optgroup,
+    select,
+    textarea
+        reset-font()
+        color: inherit
+        margin: 0
+        outline: none
+
+    button
+        overflow: visible
+
+    button,
+    html input[type="button"],
+    input[type="reset"],
+    input[type="submit"]
+        -webkit-appearance: button
+
+    input[type="checkbox"],
+    input[type="radio"]
+        box-sizing: border-box
+        padding: 0
+
+    input[type="number"]::-webkit-inner-spin-button
+    input[type="number"]::-webkit-outer-spin-button
+        height: auto
+
+    input[type="search"]
+        -webkit-appearance: textfield
+        -webkit-box-sizing: content-box
+        box-sizing: content-box
+
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-decoration
+        -webkit-appearance: none
+
+
+initialize()
+    if $isMobile
+        *
+            box-sizing:border-box
+    html, body, div, span, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    abbr, address, cite, code,
+    del, dfn, em, img, ins, kbd, q, samp,
+    small, strong, sub, sup, var,
+    b, i,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, ruby, section, summary,
+    time, mark, audio, video
+        reset-box-model()
+        reset-font()
+
+    ol, ul
+        reset-list()
+
+    table
+        reset-table()
+
+    caption, th, td
+        reset-table-cell()
+
+    blockquote, q
+        quotes: none
+    sub,
+    sup
+      position: relative
+      font-size: 75%
+      line-height: 0
+      vertical-align: baseline
+    
+    sup
+      top: -.5em
+    
+    sub
+      bottom: -.25em
+    
+    blockquote:before, blockquote:after,
+    q:before, q:after
+        content: none
+
+    audio:not([controls])
+        display: none
+        height: 0
+
+    template
+        display: none
+
+    html
+        //font-size: unit($base-font-size / 16 * 100, '%')
+        font-size: $base-font-size
+        font-family: $base-font-family
+
+        if $prevent-text-size-adjust == true
+            -webkit-text-size-adjust: none
+            -ms-text-size-adjust: none
+
+    if $prevent-tap-highlight == true
+        a,
+        nav
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+            -webkit-tap-highlight-color: transparent
+
+    a
+        background-color: transparent
+        text-decoration: none
+        //transition: color background 0.5s
+        &:active, &:hover
+            outline 0
+    map, map area
+        outline: none
+
+    normalize-form()
+    
+    .clearfix
+        clearfix()

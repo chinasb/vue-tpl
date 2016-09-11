@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/**
+ * @file 	其他一些有用的Mixin
+  * @authors Kevin Chen (chj@8cuo.net)
+ * @date    2015-06-30 12:54:23
+ */
+
+// 隐藏文字
+hide-text()
+    color: transparent
+    font: 0 / 0 a
+    text-shadow: none
+
+
+// 省略
+// 多行截断并省略，仅在 webkit 下支持
+ellipsis($line = 1)
+    overflow: hidden
+    text-overflow: ellipsis
+
+    if $line == 1
+        white-space: nowrap
+    else
+        display: -webkit-box
+        -webkit-line-clamp: $line
+        -webkit-box-orient: vertical
+
+overflow()
+	if arguments[0] == ellipsis
+		ellipsis()
+	else
+		overflow: arguments
+
+//display:inline-block
+dis-ib()
+	display:inline-block
+	*display: inline
+	*zoom: 1
+
+//强制不换行
+nowrap()
+	white-space:nowrap
+
+//强制换行
+breakall()
+    word-wrap:break-word   
+// 清除浮动
+clearfix()
+    &:before
+    &:after
+        content: ""
+        display: table
+    &:after
+        clear: both
+        zoom: 1 if $support-for-ie
+        
+// 半透明效果
+// @param: n  ==> 不透明度 e.g.: .5
+opacity(n)
+	opacity n
+	if $support-for-ie
+		filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+
+hide()
+	display: none
+
+bgsprite($values...)
+    if length($values) == 1
+        $values-unit = unit($values) == '' ? 'px' : unit($values)
+        background:url($pathImg/sprite.png) no-repeat unit($values, $values-unit) unit($values, $values-unit)
+    else
+        $v0-unit = unit($values[0]) == '' ? 'px' : unit($values[0])
+        $v1-unit = unit($values[1]) == '' ? 'px' : unit($values[1])
+        background:url($pathImg/sprite.png) no-repeat unit($values[0], $v0-unit) unit($values[1], $v1-unit)
+
+uppercase()
+	text-transform: uppercase
+	
+lowercase()
+	text-transform: lowercase

@@ -1,0 +1,73 @@
+/**
+ * @file    全局的 margin padding 等
+ * @authors Kevin Chen (chj@8cuo.net)
+ * @date    2015-09-02 16:08:35
+ * @version $Id$
+ */
+
+if $mt
+    for $i in $mt
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .mt{$i}
+            margin-top: unit($i, $unit) !important
+
+if $mr
+    for $i in $mr
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .mr{$i}
+            margin-right: unit($i, $unit) !important
+if $mb
+    for $i in $mb
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .mb{$i}
+            margin-bottom: unit($i, $unit) !important
+
+if $ml  
+    for $i in $ml
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .ml{$i}
+            margin-left: unit($i, $unit) !important
+
+if $pt  
+    for $i in $pt
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .pt{$i}
+            padding-top: unit($i, $unit) !important
+
+if $pr
+    for $i in $pr
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .pr{$i}
+            padding-right: unit($i, $unit) !important
+
+if $pb
+    for $i in $pb
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .pb{$i}
+            padding-bottom: unit($i, $unit) !important
+
+if $pl  
+    for $i in $pl
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .pl{$i}
+            padding-left: unit($i, $unit) !important
+
+if $p  
+    for $i in $p
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .p{$i}
+            padding: unit($i, $unit)
+
+if $w       
+    for $i in $w
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        $u = unit($i) == '%' ? 'p' : ''
+        .w{unit($i, '')}{$u}
+            width: unit($i, $unit) !important
+
+
+if $h
+    for $i in $h
+        $unit = unit($i) == '' ? 'px' : unit($i)
+        .h{$i}
+            height: unit($i, $unit) !important

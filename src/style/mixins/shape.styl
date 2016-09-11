@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/**
+ * @file 	快速设置形状
+ * @authors Kevin Chen (chj@8cuo.net)
+ * @date    2015-06-30 12:54:23
+ */
+ 
+// 快速设置高宽
+// @param: width, height
+// @demo:
+// .box             ==>.box { width: 5em; height: 6px;}
+//   size: 5em
+// .box2            ==>.box2 { width:100px; height:20px;}
+//    size: 100 20
+// .box3            ==>.box3 { width:50px}
+// 	size: 50
+// @desc:
+// 	不带单位 默认为px
+//
+
+ size($values...)
+    if length($values) == 1
+        $values-unit = unit($values) == '' ? 'px' : unit($values)
+
+        width: unit($values, $values-unit)
+        height: unit($values, $values-unit)
+    else
+        $width-unit = unit($values[0]) == '' ? 'px' : unit($values[0])
+        $height-unit = unit($values[1]) == '' ? 'px' : unit($values[1])
+
+        width: unit($values[0], $width-unit)
+        height: unit($values[1], $height-unit)
+        
+
+// 三角形
+// @param: direction, size, color
+// @desc:  direction -> 方向，取值范围为 top、right、bottom、left
+//         size      -> 尺寸
+//         color     -> 颜色  
+// @demo:
+// .triangle          output
+//     triangle(top)  =====>  .triangle {
+//  								width: 0px;
+//  								border-left: 10px solid transparent;
+//  								border-right: 10px solid transparent;
+//  								border-bottom: 10px solid #333;
+//								}
+//
+triangle($direction = top, $size = 10px, $color = #333)
+    size: 0 0
+    hide-text()
+    if $direction == top
+        border-top:0 solid transparent
+        border-left: $size solid transparent
+        border-right: $size solid transparent
+        border-bottom: $size solid $color
+    else if $direction == bottom
+        border-bottom: 0 solid transparent
+        border-left: $size solid transparent
+        border-right: $size solid transparent
+        border-top: $size solid $color
+    else if $direction == left
+        border-left: 0 solid transparent
+        border-top: $size solid transparent
+        border-bottom: $size solid transparent
+        border-right: $size solid $color
+    else if $direction == right
+        border-right:0 solid transparent
+        border-top: $size solid transparent
+        border-bottom: $size solid transparent
+        border-left: $size solid $color
+        
+// 圆形
+// @param: width, height
+//
+//
+//
+circle($values...)
+    if length($values) == 1
+        $values-unit = unit($values) == '' ? 'px' : unit($values)
+        border-radius: unit($values, $values-unit)
+        size: $values
+    else
+        $horizontal-unit = unit($values[0]) == '' ? 'px' : unit($values[0])
+        $vertical-unit = unit($values[1]) == '' ? 'px' : unit($values[1])
+
+        border-radius: unit($values[0], $horizontal-unit) \/ unit($values[1], $vertical-unit)
+        size: $values[0] $values[1]

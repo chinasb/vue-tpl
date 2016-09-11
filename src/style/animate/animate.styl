@@ -1,0 +1,43 @@
+/**
+ * @file    CSS3动画
+ * @authors Kevin Chen (chj@8cuo.net)
+ * @date    2015-06-30 12:54:23
+ * @desc    Animate.css Stylus 移植
+ * @use     
+ *          animate('flash')
+ *          .test-1
+ *              animate('bounce')
+ *          .test-3
+ *              animate('bounceIn', 2s)
+ *          .test-4
+ *              animate('bounceIn', 0.5s, 'forwards')
+ * @Demo    http://daneden.github.io/animate.css/
+ *
+ */
+
+animate($name, $duration = 1s, $fill-mode = both,$infinite = false)
+    /
+        @import $name
+    if mixin != 'root'
+        $fill-mode = unquote($fill-mode) if typeof($fill-mode) == 'string'
+        $name = unquote($name) if typeof($name) == 'string'
+
+        animation-name: $name
+        animation-duration: $duration
+        animation-fill-mode: $fill-mode
+
+        // 处理特殊动画
+        if $name == bounce
+            transform-origin: center bottom
+        if $anme == flip
+            backface-visibility: visible
+        if $name in (flipInX flipInY flipOutX flipOutY)
+            backface-visibility: visible !important
+        if $name == lightSpeedIn
+            animation-timing-function: ease-out
+        if $name == lightSpeedOut
+            animation-timing-function: ease-in
+        if $name == swing
+            transform-origin: top center
+        if $infinite
+            animation-iteration-count: infinite
